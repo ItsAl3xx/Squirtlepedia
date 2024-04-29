@@ -1,28 +1,46 @@
 // src/components/PokemonCard.js
-
-import React from 'react';
-import { ListGroup } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Card } from 'react-bootstrap';
+import { getTypeColor } from '../helpers';
+import '../App.css'; 
 
 const PokemonCard = ({ pokemon }) => {
-  // Function to add a Pokemon to favorites
-  const addToFavorites = () => {
-    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    // Assuming pokemon is an object with an 'id' property
-    const isFavorite = favorites.some(fav => fav.id === pokemon.id);
-    
-    if (!isFavorite) {
-      favorites.push(pokemon);
-      localStorage.setItem('favorites', JSON.stringify(favorites));
-    }
-    // If pokemon is already in favorites, you might want to alert the user
-  };
+  const [details, setDetails] = useState(null);
+
+  useEffect(() => {
+    const fetchPokemonDetails = async () => {
+      try {
+        const response = await axios.get(pokemon.url);
+        setDetails(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchPokemonDetails();
+  }, [pokemon]);
+
+  if (!details) {
+    return <div>Loading...</div>;
+  }
+
+  const spriteUrl = details.sprites.versions['generation-i']['red-blue'].front_default;
 
   return (
-    <ListGroup.Item variant="dark" className="pokemon-card">
-      <h5>{pokemon.name}</h5>
-      {/* Add more details you want to display about the pokemon */}
-      <button onClick={addToFavorites}>Add to Favorites</button>
-    </ListGroup.Item>
+    <Card className="pokemon-card">
+      <Card.Img variant="top" src={spriteUrl} className="pokemon-img" alt={details.name} />
+      <Card.Body>
+        <Card.Title className="pokemon-name">{details.name}</Card.Title>
+        <div className="pokemon-type">
+          {details.types.map((typeInfo) => (
+            <div key={typeInfo.type.name} className="type-badge" style={{ backgroundColor: getTypeColor(typeInfo.type.name) }}>
+              {typeInfo.type.name.toUpperCase()}
+            </div>
+          ))}
+        </div>
+      </Card.Body>
+    </Card>
   );
 };
 

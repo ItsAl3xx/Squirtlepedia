@@ -1,32 +1,37 @@
 // src/components/PokemonList.js
 import React, { useEffect, useState } from 'react';
-import { getPokemonList } from '../api';
-import PokemonCard from './PokemonCard'; // Make sure to import PokemonCard
-import { ListGroup } from 'react-bootstrap';
+import axios from 'axios';
+import PokemonCard from './PokemonCard';
+import { Row, Col } from 'react-bootstrap';
+import '../App.css';
 
 const PokemonList = () => {
-  const [pokemon, setPokemon] = useState([]);
+  const [pokemons, setPokemons] = useState([]);
 
   useEffect(() => {
-    const fetchPokemon = async () => {
+    const fetchPokemonList = async () => {
       try {
-        const data = await getPokemonList();
-        setPokemon(data.results);
+        const limit = 151; // Number of Gen 1 Pokémon
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`);
+        setPokemons(response.data.results);
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchPokemon();
+    fetchPokemonList();
   }, []);
 
   return (
-    <ListGroup>
-      {pokemon.map((p) => (
-        // Use the PokemonCard component for each Pokemon
-        <PokemonCard key={p.name} pokemon={p} />
-      ))}
-    </ListGroup>
+    <div className="pokemon-deck">
+      <Row xs={1} md={3} className="g-4">
+        {pokemons.map((pokemon) => (
+          <Col key={pokemon.name} className="mb-4">
+            <PokemonCard pokemon={pokemon} />
+          </Col>
+        ))}
+      </Row>
+    </div>
   );
 };
 

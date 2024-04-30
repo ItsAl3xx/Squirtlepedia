@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css'; // Your custom CSS for dark theme
+import './App.css'; // Your custom CSS for the dark theme
 
-import NavbarComponent from './components/NavbarComponent'; // Make sure you have this component
-import HomePage from './components/HomePage'; // Make sure you have this component
+import NavbarComponent from './components/NavbarComponent';
+import HomePage from './components/HomePage';
 import Search from './components/Search';
-import PokemonDetails from './components/PokemonDetails'; // Make sure you have this component
-import FavoritesList from './components/FavoritesList'; // Make sure you have this component
+import PokemonDetails from './components/PokemonDetails';
+import FavoritesList from './components/FavoritesList';
 
 const App = () => {
   return (
@@ -19,7 +19,7 @@ const App = () => {
           <Route path="/search" element={<Search />} />
           <Route path="/pokemon/:pokemonId" element={<PokemonDetails />} />
           <Route path="/favorites" element={<FavoritesList />} />
-          {/* You can add more routes here as needed */}
+          {/* Additional routes can be added here as needed */}
         </Routes>
       </div>
     </Router>

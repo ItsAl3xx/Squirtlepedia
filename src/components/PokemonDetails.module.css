@@ -1,0 +1,38 @@
+.pokemonCard {
+  display: flex;
+  flex-direction: row;
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+.pokemonImage {
+  max-width: 100%;
+  margin: 20px;
+}
+
+.details, .evolutionSection, .stats {
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.evoItem {
+  background: #e0e0e0;
+  padding: 5px;
+  margin-top: 5px;
+  border-radius: 5px;
+}
+
+.statItem {
+  background: #f0f0f1;
+  padding: 5px;
+  margin-top: 5px;
+  border-radius: 5px;
+}
+
+.cardTitle {
+  font-size: 24px;
+  font-weight: bold;
+}

@@ -2,7 +2,7 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import PokemonList from './PokemonList';
-import { Row, Col } from 'react-bootstrap';
+
 
 const Search = () => {
   return (

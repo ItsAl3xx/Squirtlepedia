@@ -1,38 +1,96 @@
+
+.pokemonDetailContainer {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background-color: #121212; /* Dark background color */
+}
+
 .pokemonCard {
+  width: 100%;
+  max-width: 1000px;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* Adjusted box shadow color */
+  background-color: #1e1e1e; /* Dark card background color */
   display: flex;
   flex-direction: row;
-  background-color: #f9f9f9;
-  border-radius: 15px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  align-items: flex-start;
+  color: #fff; /* White text color */
+}
+
+.pokemonImageContainer {
+  padding: 20px;
 }
 
 .pokemonImage {
-  max-width: 100%;
-  margin: 20px;
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
+  border: 5px solid #333; /* Dark border color */
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* Adjusted box shadow color */
+  object-fit: contain;
 }
 
-.details, .evolutionSection, .stats {
-  padding: 20px;
-  background: #fff;
-  border-radius: 10px;
-  margin-bottom: 10px;
+.pokemonInfo {
+  flex: 1;
+}
+
+.pokemonName {
+  margin-top: 0;
+}
+
+.typeBadges {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.detailsGrid div {
+  background-color: #333; /* Dark grid item background color */
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1); /* Adjusted box shadow color */
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.stat {
+  background-color: #333; /* Dark stat background color */
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1); /* Adjusted box shadow color */
+}
+
+.evolutionChain {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .evoItem {
-  background: #e0e0e0;
-  padding: 5px;
-  margin-top: 5px;
-  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 15px;
+  text-align: center;
 }
 
-.statItem {
-  background: #f0f0f1;
-  padding: 5px;
-  margin-top: 5px;
-  border-radius: 5px;
-}
-
-.cardTitle {
-  font-size: 24px;
-  font-weight: bold;
+.evoItem img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1); /* Adjusted box shadow color */
 }

@@ -1,4 +1,3 @@
-// src/components/SearchBar.js
 import React, { useState } from 'react';
 import { Form, FormControl, Button } from 'react-bootstrap';
 
@@ -11,7 +10,7 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <Form inline onSubmit={handleSubmit}>
+    <Form className="d-flex" onSubmit={handleSubmit}>
       <FormControl
         type="text"
         placeholder="Search Pokémon"
@@ -19,7 +18,9 @@ const SearchBar = ({ onSearch }) => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <Button variant="outline-success" type="submit">Search</Button>
+      <Button variant="outline-success" type="submit">
+        Search
+      </Button>
     </Form>
   );
 };

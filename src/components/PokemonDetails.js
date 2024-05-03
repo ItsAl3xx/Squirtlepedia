@@ -5,7 +5,7 @@ import { Container, Card, Image, Badge } from 'react-bootstrap';
 import styles from './PokemonDetails.module.css';
 
 const PokemonDetails = () => {
-  const { pokemonId } = useParams();
+  const { name } = useParams();
   const [pokemon, setPokemon] = useState(null);
   const [species, setSpecies] = useState(null);
   const [evolutionChain, setEvolutionChain] = useState([]);
@@ -13,28 +13,36 @@ const PokemonDetails = () => {
 
   useEffect(() => {
     const fetchPokemonDetails = async () => {
-      const { data: pokemonData } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
-      setPokemon(pokemonData);
+      try {
+        const { data: pokemonData } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+        setPokemon(pokemonData);
 
-      const { data: speciesData } = await axios.get(pokemonData.species.url);
-      setSpecies(speciesData);
+        const { data: speciesData } = await axios.get(pokemonData.species.url);
+        setSpecies(speciesData);
 
-      const { data: evolutionData } = await axios.get(speciesData.evolution_chain.url);
-      processEvolutionChain(evolutionData.chain);
+        const { data: evolutionData } = await axios.get(speciesData.evolution_chain.url);
+        processEvolutionChain(evolutionData.chain);
+      } catch (error) {
+        console.error('Error fetching Pokemon details:', error);
+      }
     };
 
     const fetchTypeColors = async () => {
-      const { data } = await axios.get('https://pokeapi.co/api/v2/type/');
-      const colors = {};
-      data.results.forEach(type => {
-        colors[type.name] = getTypeColor(type.name);
-      });
-      setTypeColors(colors);
+      try {
+        const { data } = await axios.get('https://pokeapi.co/api/v2/type/');
+        const colors = {};
+        data.results.forEach(type => {
+          colors[type.name] = getTypeColor(type.name);
+        });
+        setTypeColors(colors);
+      } catch (error) {
+        console.error('Error fetching type colors:', error);
+      }
     };
 
     fetchPokemonDetails();
     fetchTypeColors();
-  }, [pokemonId]);
+  }, [name]);
 
   const processEvolutionChain = (chain) => {
     let currentStage = chain;

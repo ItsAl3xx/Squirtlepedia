@@ -1,8 +1,6 @@
-// src/components/FavoritesList.js
 import React from 'react';
 
 const FavoritesList = () => {
-  // Load favorites from local storage and display them
   const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
   return (

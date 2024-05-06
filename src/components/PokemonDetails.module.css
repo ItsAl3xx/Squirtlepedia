@@ -94,3 +94,22 @@
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1); /* Adjusted box shadow color */
 }
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.favoritesButton {
+  background-color: #007bff; /* Modern blue color */
+  border-color: #007bff;
+  color: #fff;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.favoritesButton:hover {
+  background-color: #0056b3; /* Darker shade of blue on hover */
+  border-color: #0056b3;
+}

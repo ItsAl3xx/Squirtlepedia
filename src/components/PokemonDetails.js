@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Container, Card, Image, Badge } from 'react-bootstrap';
+import { Container, Card, Image, Badge, Button } from 'react-bootstrap';
+import { getTypeColor } from '../helpers';  // This goes up one level from components to src, then accesses helpers.js
 import styles from './PokemonDetails.module.css';
 
 const PokemonDetails = () => {
@@ -9,7 +10,7 @@ const PokemonDetails = () => {
   const [pokemon, setPokemon] = useState(null);
   const [species, setSpecies] = useState(null);
   const [evolutionChain, setEvolutionChain] = useState([]);
-  const [typeColors, setTypeColors] = useState({});
+  const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
     const fetchPokemonDetails = async () => {
@@ -22,26 +23,14 @@ const PokemonDetails = () => {
 
         const { data: evolutionData } = await axios.get(speciesData.evolution_chain.url);
         processEvolutionChain(evolutionData.chain);
+
+        checkIfFavorite(pokemonData.id);
       } catch (error) {
         console.error('Error fetching Pokemon details:', error);
       }
     };
 
-    const fetchTypeColors = async () => {
-      try {
-        const { data } = await axios.get('https://pokeapi.co/api/v2/type/');
-        const colors = {};
-        data.results.forEach(type => {
-          colors[type.name] = getTypeColor(type.name);
-        });
-        setTypeColors(colors);
-      } catch (error) {
-        console.error('Error fetching type colors:', error);
-      }
-    };
-
     fetchPokemonDetails();
-    fetchTypeColors();
   }, [name]);
 
   const processEvolutionChain = (chain) => {
@@ -59,30 +48,26 @@ const PokemonDetails = () => {
     setEvolutionChain(evolutionArray);
   };
 
-  const getTypeColor = (typeName) => {
-    // Map type names to their corresponding colors
-    const typeColors = {
-      normal: '#A8A878',
-      fire: '#F08030',
-      water: '#6890F0',
-      electric: '#F8D030',
-      grass: '#78C850',
-      ice: '#98D8D8',
-      fighting: '#C03028',
-      poison: '#A040A0',
-      ground: '#E0C068',
-      flying: '#A890F0',
-      psychic: '#F85888',
-      bug: '#A8B820',
-      rock: '#B8A038',
-      ghost: '#705898',
-      dragon: '#7038F8',
-      dark: '#705848',
-      steel: '#B8B8D0',
-      fairy: '#EE99AC',
-    };
+  const checkIfFavorite = (id) => {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    setIsFavorite(favorites.some(p => p.id === id));
+  };
 
-    return typeColors[typeName];
+  const toggleFavorite = () => {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    if (isFavorite) {
+      const newFavorites = favorites.filter(p => p.id !== pokemon.id);
+      localStorage.setItem('favorites', JSON.stringify(newFavorites));
+      setIsFavorite(false);
+    } else {
+      favorites.push({
+        id: pokemon.id,
+        name: pokemon.name,
+        image: pokemon.sprites.front_default
+      });
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+      setIsFavorite(true);
+    }
   };
 
   if (!pokemon || !species) {
@@ -105,14 +90,19 @@ const PokemonDetails = () => {
           />
         </div>
         <div className={styles.pokemonInfo}>
+          <div className={styles.headerContainer}>
           <h2 className={styles.pokemonName}>
             {pokemon.name} - #{pokemon.id}
           </h2>
+          <Button variant={isFavorite ? "primary" : "outline-primary"} onClick={toggleFavorite} className={styles.favoritesButton}>
+            {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+          </Button>
+          </div>
           <div className={styles.typeBadges}>
             {pokemon.types.map(type => (
               <Badge
                 key={type.type.name}
-                style={{ backgroundColor: typeColors[type.type.name] }}
+                style={{ backgroundColor: getTypeColor(type.type.name) }}
               >
                 {type.type.name.toUpperCase()}
               </Badge>
@@ -129,15 +119,13 @@ const PokemonDetails = () => {
               <strong>Base Experience:</strong> {pokemon.base_experience}
             </div>
             <div>
-              <strong>Abilities:</strong>{' '}
-              {pokemon.abilities.map(a => a.ability.name).join(', ')}
+              <strong>Abilities:</strong> {pokemon.abilities.map(a => a.ability.name).join(', ')}
             </div>
           </div>
           <div className={styles.stats}>
             {pokemon.stats.map(stat => (
               <div key={stat.stat.name} className={styles.stat}>
-                <strong>{stat.stat.name.replace('-', ' ')}</strong>:{' '}
-                {stat.base_stat}
+                <strong>{stat.stat.name.replace('-', ' ')}</strong>: {stat.base_stat}
               </div>
             ))}
           </div>
@@ -146,9 +134,7 @@ const PokemonDetails = () => {
             {evolutionChain.map((evo, index) => (
               <div key={index} className={styles.evoItem}>
                 <Image src={evo.image} thumbnail />
-                <p>
-                  {evo.species_name} (Level {evo.min_level})
-                </p>
+                <p>{evo.species_name} (Level {evo.min_level})</p>
               </div>
             ))}
           </div>

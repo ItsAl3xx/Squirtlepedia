@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import PokemonList from './PokemonList';
 import SearchBar from './SearchBar';
 
 const Search = () => {
-  const navigate = useNavigate();
   const [allPokemons, setAllPokemons] = useState([]);
   const [displayedPokemons, setDisplayedPokemons] = useState([]);
 
@@ -19,7 +17,6 @@ const Search = () => {
         console.error('Error fetching Pokemons:', error);
       }
     };
-
     fetchPokemons();
   }, []);
 

@@ -1,0 +1,43 @@
+.favoritesContainer {
+  text-align: center;
+  padding: 40px;
+  background-color: #121212;
+  color: #fff;
+}
+
+.favoritesTitle {
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.favoritesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 30px;
+  justify-items: center;
+}
+
+@media (min-width: 768px) {
+  .favoritesGrid {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .favoritesGrid {
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+  }
+}
+
+.favoriteCard {
+  width: 100%;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.favoriteCard:hover {
+  transform: scale(1.05);
+}

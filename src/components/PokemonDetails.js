@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Container, Card, Image, Badge, Button } from 'react-bootstrap';
-import { getTypeColor } from '../helpers';  // This goes up one level from components to src, then accesses helpers.js
+import { getTypeColor } from '../helpers';
 import styles from './PokemonDetails.module.css';
 
 const PokemonDetails = () => {
@@ -17,19 +17,15 @@ const PokemonDetails = () => {
       try {
         const { data: pokemonData } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
         setPokemon(pokemonData);
-
         const { data: speciesData } = await axios.get(pokemonData.species.url);
         setSpecies(speciesData);
-
         const { data: evolutionData } = await axios.get(speciesData.evolution_chain.url);
         processEvolutionChain(evolutionData.chain);
-
         checkIfFavorite(pokemonData.id);
       } catch (error) {
         console.error('Error fetching Pokemon details:', error);
       }
     };
-
     fetchPokemonDetails();
   }, [name]);
 
@@ -55,19 +51,21 @@ const PokemonDetails = () => {
 
   const toggleFavorite = () => {
     const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    if (isFavorite) {
-      const newFavorites = favorites.filter(p => p.id !== pokemon.id);
-      localStorage.setItem('favorites', JSON.stringify(newFavorites));
+    const index = favorites.findIndex(p => p.id === pokemon.id);
+    if (index >= 0) {
+      favorites.splice(index, 1);
       setIsFavorite(false);
     } else {
       favorites.push({
         id: pokemon.id,
         name: pokemon.name,
-        image: pokemon.sprites.front_default
+        url: `https://pokeapi.co/api/v2/pokemon/${pokemon.id}/`,
+        image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/${pokemon.id}.png`,
+        type: pokemon.types.map(type => type.type.name).join(', ')
       });
-      localStorage.setItem('favorites', JSON.stringify(favorites));
       setIsFavorite(true);
     }
+    localStorage.setItem('favorites', JSON.stringify(favorites));
   };
 
   if (!pokemon || !species) {
@@ -83,20 +81,22 @@ const PokemonDetails = () => {
     <Container className={styles.pokemonDetailContainer}>
       <Card className={styles.pokemonCard}>
         <div className={styles.pokemonImageContainer}>
-          <Image
-            src={pokemon.sprites.versions['generation-i']['red-blue'].front_default || pokemon.sprites.front_default}
-            roundedCircle
-            className={styles.pokemonImage}
-          />
+        <Image
+  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/${pokemon.id}.png`}
+  roundedCircle
+  className={styles.pokemonImage}
+/>
+
+
         </div>
         <div className={styles.pokemonInfo}>
           <div className={styles.headerContainer}>
-          <h2 className={styles.pokemonName}>
-            {pokemon.name} - #{pokemon.id}
-          </h2>
-          <Button variant={isFavorite ? "primary" : "outline-primary"} onClick={toggleFavorite} className={styles.favoritesButton}>
-            {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
-          </Button>
+            <h2 className={styles.pokemonName}>
+              {pokemon.name} - #{pokemon.id}
+            </h2>
+            <Button variant={isFavorite ? "primary" : "outline-primary"} onClick={toggleFavorite} className={styles.favoritesButton}>
+              {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+            </Button>
           </div>
           <div className={styles.typeBadges}>
             {pokemon.types.map(type => (

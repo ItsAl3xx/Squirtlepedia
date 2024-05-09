@@ -10,15 +10,15 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <Form className="d-flex" onSubmit={handleSubmit}>
+    <Form className="d-flex mb-3" onSubmit={handleSubmit}>
       <FormControl
         type="text"
         placeholder="Search Pokémon"
-        className="mr-sm-2"
+        className="mr-2"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <Button variant="outline-success" type="submit">
+      <Button variant="outline-light" type="submit">
         Search
       </Button>
     </Form>

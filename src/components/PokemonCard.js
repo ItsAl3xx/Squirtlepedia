@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getTypeColor } from '../helpers';
-import '../App.css';
+import styles from './PokemonCard.module.css';
 
 const PokemonCard = ({ pokemon }) => {
   const [details, setDetails] = useState(null);
@@ -21,22 +21,25 @@ const PokemonCard = ({ pokemon }) => {
   }, [pokemon]);
 
   if (!details) {
-    return <div>Loading...</div>;
+    return <div className={styles.loading}>Loading...</div>;
   }
 
-  const spriteUrl = details.sprites.versions['generation-i']['red-blue'].front_default;
+  const spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/${details.id}.png`;
 
   return (
-    <Link to={`/pokemon/${details.name}`} className="pokemon-card-link">
-      <Card className="pokemon-card">
-        <Card.Img variant="top" src={spriteUrl} className="pokemon-img" alt={details.name} />
+    <Link to={`/pokemon/${details.name}`} className={styles.pokemonCardLink}>
+      <Card className={styles.pokemonCard}>
+        <div className={styles.spriteContainer}>
+          <div className={styles.spriteBackground}></div>
+          <Card.Img variant="top" src={spriteUrl} className={styles.pokemonImg} alt={details.name} />
+        </div>
         <Card.Body>
-          <Card.Title className="pokemon-name">{details.name}</Card.Title>
-          <div className="pokemon-type">
+          <Card.Title className={styles.pokemonName}>{details.name}</Card.Title>
+          <div className={styles.pokemonType}>
             {details.types.map((typeInfo) => (
               <div
                 key={typeInfo.type.name}
-                className="type-badge"
+                className={styles.typeBadge}
                 style={{ backgroundColor: getTypeColor(typeInfo.type.name) }}
               >
                 {typeInfo.type.name.toUpperCase()}

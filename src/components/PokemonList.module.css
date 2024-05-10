@@ -1,0 +1,12 @@
+.pokemonDeck {
+  padding: 20px;
+}
+
+.pokemonDeck .row {
+  justify-content: center;
+}
+
+.pokemonDeck .col {
+  display: flex;
+  justify-content: center;
+}

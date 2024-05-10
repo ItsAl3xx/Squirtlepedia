@@ -1,11 +1,46 @@
-// src/components/HomePage.js
 import React from 'react';
 
 const HomePage = () => {
+  const styles = {
+    container: {
+      height: '100vh',
+      width: '100vw',
+      backgroundImage: `url(/background.png)`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      margin: 0,
+      padding: 0,
+      position: 'relative',
+    },
+    content: {
+      backgroundColor: 'rgba(0, 0, 0, 0.6)',
+      padding: '2rem',
+      borderRadius: '8px',
+      color: '#ffffff',
+      textAlign: 'center',
+      maxWidth: '800px',
+    },
+    header: {
+      fontSize: '3rem',
+      fontWeight: 'bold',
+      marginBottom: '1rem',
+    },
+    paragraph: {
+      fontSize: '1.2rem',
+    },
+  };
+
   return (
-    <div className="home-page">
-      <h1>Welcome to Squirtlepedia</h1>
-      <p>Start by searching for Pokémon or viewing your favorites!</p>
+    <div style={styles.container}>
+      <div style={styles.content}>
+        <h1 style={styles.header}>Welcome to SquirtlePedia!</h1>
+        <p style={styles.paragraph}>Start by searching for Pokémon or viewing your favorites!</p>
+      </div>
     </div>
   );
 };

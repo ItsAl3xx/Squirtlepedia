@@ -1,3 +1,4 @@
+// This component is the home page of the application. It is displayed when the user first visits the site. It contains a background image and a welcome message.
 import React from 'react';
 
 const HomePage = () => {

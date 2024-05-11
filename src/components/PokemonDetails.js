@@ -2,17 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Container, Card, Image, Badge, Button } from 'react-bootstrap';
-import { getTypeColor } from '../helpers';
+import { getTypeColor } from '../helpers'; // Helper function to get color based on type
 import styles from './PokemonDetails.module.css';
 
+// Component to display detailed information about a specific Pokémon
 const PokemonDetails = () => {
-  const { name } = useParams();
-  const navigate = useNavigate();
-  const [pokemon, setPokemon] = useState(null);
-  const [species, setSpecies] = useState(null);
-  const [evolutionChain, setEvolutionChain] = useState([]);
-  const [isFavorite, setIsFavorite] = useState(false);
+  const { name } = useParams(); // Extracts the Pokémon's name from the URL
+  const navigate = useNavigate(); // Hook for navigating between routes
+  const [pokemon, setPokemon] = useState(null); // State for storing the main Pokémon data
+  const [species, setSpecies] = useState(null); // State for storing species data, like flavor text
+  const [evolutionChain, setEvolutionChain] = useState([]); // State for storing the Pokémon's evolution chain
+  const [isFavorite, setIsFavorite] = useState(false); // State to track if the Pokémon is a favorite
 
+  // Fetch detailed Pokémon data from the API on component mount or when the name changes
   useEffect(() => {
     const fetchPokemonDetails = async () => {
       try {
@@ -30,6 +32,7 @@ const PokemonDetails = () => {
     fetchPokemonDetails();
   }, [name]);
 
+  // Process and store the evolution chain data
   const processEvolutionChain = (chain) => {
     let currentStage = chain;
     const evolutionArray = [];
@@ -45,11 +48,13 @@ const PokemonDetails = () => {
     setEvolutionChain(evolutionArray);
   };
 
+  // Check and update the favorite status of the Pokémon
   const checkIfFavorite = (id) => {
     const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
     setIsFavorite(favorites.some(p => p.id === id));
   };
 
+  // Toggle the favorite status of the Pokémon
   const toggleFavorite = () => {
     const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
     const index = favorites.findIndex(p => p.id === pokemon.id);
@@ -69,19 +74,23 @@ const PokemonDetails = () => {
     localStorage.setItem('favorites', JSON.stringify(favorites));
   };
 
+  // Navigate back to the previous page
   const handleGoBack = () => {
     navigate(-1);
   };
 
+  // Display loading message until all data is fetched
   if (!pokemon || !species) {
     return <Container className="text-center mt-5">Loading...</Container>;
   }
 
+  // Extract and clean the flavor text from the species data
   const getFlavorText = () => {
     const flavor = species.flavor_text_entries.find(entry => entry.language.name === 'en');
     return flavor ? flavor.flavor_text.replace(/[\n\f]/g, ' ') : "No description available.";
   };
 
+  // Render the detailed view of the Pokémon
   return (
     <Container className={styles.pokemonDetailContainer}>
       <Card className={styles.pokemonCard}>

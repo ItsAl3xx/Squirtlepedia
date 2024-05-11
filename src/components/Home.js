@@ -1,4 +1,4 @@
-// src/components/Home.js
+// This is the Home component. It will be the first page that users see when they visit the site.
 import React from 'react';
 
 const Home = () => {

@@ -7,11 +7,11 @@ const NavbarComponent = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg" className="py-3">
       <Container>
-        <Navbar.Brand as={Link} to="/" className="fs-4 fw-bold me-auto">
-          PokeApp
+        <Navbar.Brand as={Link} to="/" className="fs-4 fw-bold me-auto navbar-brand">
+          SquirtlePedia
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-start">
+        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Nav>
             <Nav.Link as={Link} to="/search" className="fs-5 mx-3 nav-link-custom">
               Search

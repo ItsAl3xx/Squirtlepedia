@@ -1,74 +1,92 @@
 .pokemonCardLink {
-    text-decoration: none;
-  }
-  
+  text-decoration: none;
+}
+
+.pokemonCard {
+  width: 100%;
+  max-width: 300px;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  transition: transform 0.3s ease-in-out;
+  margin: 0 auto;
+}
+
+.pokemonCard:hover {
+  transform: scale(1.05);
+}
+
+.spriteContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  margin-bottom: 20px;
+}
+
+.spriteBackground {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  opacity: 0.8;
+  z-index: 1;
+}
+
+.pokemonImg {
+  position: relative;
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  z-index: 2;
+}
+
+.pokemonName {
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.pokemonType {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.typeBadge {
+  padding: 5px 10px;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.loading {
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  padding: 20px;
+}
+
+@media (max-width: 600px) {
   .pokemonCard {
-    width: 100%;
-    background-color: #1e1e1e;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-    padding: 10px;
-    transition: transform 0.3s ease-in-out;
+    max-width: 100%;
   }
-  
-  .pokemonCard:hover {
-    transform: scale(1.05);
-  }
-  
-  .spriteContainer {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 120px;
-    margin-bottom: 10px;
-  }
-  
-  .spriteBackground {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80px;
-    height: 80px;
-    background-color: #fff;
-    border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    opacity: 0.8;
-    z-index: 1;
-  }
-  
-  .pokemonImg {
-    position: relative;
-    width: auto;
-    height: 100%;
-    object-fit: contain;
-    z-index: 2;
-  }
-  
+
   .pokemonName {
-    color: #fff;
-    font-size: 14px;
-    text-align: center;
-    margin-bottom: 5px;
+    font-size: 20px;
   }
-  
-  .pokemonType {
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-  }
-  
+
   .typeBadge {
-    padding: 3px 6px;
-    border-radius: 20px;
-    color: #fff;
-    font-size: 10px;
+    font-size: 12px;
   }
-  
-  .loading {
-    color: #fff;
-    font-size: 14px;
-    text-align: center;
-    padding: 10px;
-  }
+}

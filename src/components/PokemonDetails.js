@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Container, Card, Image, Badge, Button } from 'react-bootstrap';
 import { getTypeColor } from '../helpers';
@@ -7,6 +7,7 @@ import styles from './PokemonDetails.module.css';
 
 const PokemonDetails = () => {
   const { name } = useParams();
+  const navigate = useNavigate();
   const [pokemon, setPokemon] = useState(null);
   const [species, setSpecies] = useState(null);
   const [evolutionChain, setEvolutionChain] = useState([]);
@@ -68,6 +69,10 @@ const PokemonDetails = () => {
     localStorage.setItem('favorites', JSON.stringify(favorites));
   };
 
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   if (!pokemon || !species) {
     return <Container className="text-center mt-5">Loading...</Container>;
   }
@@ -81,19 +86,20 @@ const PokemonDetails = () => {
     <Container className={styles.pokemonDetailContainer}>
       <Card className={styles.pokemonCard}>
         <div className={styles.pokemonImageContainer}>
-        <Image
-  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/${pokemon.id}.png`}
-  roundedCircle
-  className={styles.pokemonImage}
-/>
-
-
+          <Image
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/${pokemon.id}.png`}
+            roundedCircle
+            className={styles.pokemonImage}
+          />
         </div>
         <div className={styles.pokemonInfo}>
           <div className={styles.headerContainer}>
             <h2 className={styles.pokemonName}>
               {pokemon.name} - #{pokemon.id}
             </h2>
+            <button className={styles.backButton} onClick={handleGoBack}>
+              &larr; Back
+            </button>
             <Button variant={isFavorite ? "primary" : "outline-primary"} onClick={toggleFavorite} className={styles.favoritesButton}>
               {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
             </Button>

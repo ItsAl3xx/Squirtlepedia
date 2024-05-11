@@ -1,4 +1,3 @@
-// src/helpers.js
 
 const typeColors = {
     normal: '#A8A77A',

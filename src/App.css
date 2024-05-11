@@ -1,23 +1,22 @@
-/* src/App.css */
 
 .App {
-  background-color: #121212; /* Dark background */
-  color: #e0e0e0; /* Light text */
-  padding: 2rem; /* Add padding to the entire app for better spacing */
-  display: flex; /* New */
-  flex-direction: column; /* New */
-  align-items: center; /* New */
-  min-height: 100vh; /* New - To ensure the app takes minimum full viewport height */
+  background-color: #121212;
+  color: #e0e0e0;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
 }
 
-/* Centering Pokemon Cards within their container */
+
 .pokemon-deck {
-  display: flex; /* New */
-  justify-content: center; /* New */
-  flex-wrap: wrap; /* New */
-  max-width: 1200px; /* New - maximum width of the cards container */
-  margin: auto; /* New - centers the cards container */
-  gap: 2rem; /* New - adds space between cards */
+  display: flex; 
+  justify-content: center; 
+  flex-wrap: wrap; 
+  max-width: 1200px;
+  margin: auto; 
+  gap: 2rem;
 }
 
 /* Pokemon Card Styles */
@@ -25,26 +24,26 @@
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  width: 100%; /* Adjust if necessary */
-  max-width: 250px; /* Adjust this for different sizes */
-  margin: 1rem; /* Adds margin around the card for spacing */
+  width: 100%; 
+  max-width: 250px; 
+  margin: 1rem; 
   overflow: hidden;
-  background-color: #f8f8f8; /* default background */
-  min-height: 260px; /* Ensures all cards are of the same minimum height */
-  display: flex; /* Allows you to flexibly align children */
-  flex-direction: column; /* Stacks children vertically */
-  justify-content: space-between; /* Distributes space around items */
-  align-items: center; /* Centers items horizontally */
-  padding: 1rem; /* Adds padding inside the card */
+  background-color: #f8f8f8; 
+  min-height: 260px; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 1rem; 
 }
 
 
 .pokemon-img {
-  display: block; /* Removes extra space under the image */
-  max-width: 100%; /* Ensures image is not bigger than its container */
-  max-height: 120px; /* Fixed height for all images */
-  object-fit: contain; /* Ensures the image is scaled properly within the bounds */
-  margin: 0 auto 1rem; /* Centers the image and adds spacing between image and title */
+  display: block; 
+  max-width: 100%; 
+  max-height: 120px; 
+  object-fit: contain;
+  margin: 0 auto 1rem;
 }
 
 /* Styling for the name of the Pokemon */
@@ -58,7 +57,7 @@
 .pokemon-type {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap; /* Allows types to wrap to next line if necessary */
+  flex-wrap: wrap; 
   margin: 0.5rem 0;
 }
 

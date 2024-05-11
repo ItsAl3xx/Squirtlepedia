@@ -1,13 +1,13 @@
-/* Apply a dark theme to the body */
+
 body {
-  background-color: #121212; /* Dark gray */
-  color: white; /* White text for contrast */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
+  background-color: #121212; 
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
   margin: 0;
   padding: 0;
 }
 
-/* Style the main container */
+
 .App {
   display: flex;
   flex-direction: column;
@@ -16,26 +16,23 @@ body {
   min-height: 100vh;
 }
 
-/* Style headings */
+
 h1 {
-  color: #0dcaf0; /* Bootstrap's 'info' blue for a pop of color */
+  color: #0dcaf0; 
 }
 
-/* Style Navbar from React-Bootstrap */
+
 .navbar {
-  background-color: #333; /* Darker gray for the navbar */
+  background-color: #333; 
 }
 
-/* Style navbar links */
 .nav-link {
-  color: #0dcaf0; /* Bootstrap's 'info' blue for links */
+  color: #0dcaf0; 
 }
 
-/* Style ListGroup from React-Bootstrap for PokemonList */
+
 .list-group-item {
-  background-color: #222; /* Even darker gray for list items */
-  border: none; /* Remove borders for a cleaner look */
-  color: #fff; /* White text */
+  background-color: #222; 
+  border: none; 
+  color: #fff; 
 }
-
-/* Add other styles for buttons, forms, etc. */

@@ -5,7 +5,6 @@ const Home = () => {
   return (
     <div>
       <h1>Welcome to the Squirtlepedia</h1>
-      {/* Other content */}
     </div>
   );
 };

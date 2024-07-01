@@ -85,5 +85,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 If you have any questions or feedback, feel free to reach out.
 
 - **Email**: [alexbravo326@gmail.com](mailto:alexbravo326@gmail.com)
-- **LinkedIn**: [LinkedIn Profile](https://www.linkedin.com/in/yourprofile)
-- **GitHub**: [GitHub Profile](https://github.com/yourprofile)

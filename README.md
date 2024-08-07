@@ -1,70 +1,84 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# SquirtlePedia
 
-## Available Scripts
+This project was made for a coding bootcamp for Front End Development that i was taking.
+SquirtlePedia is a sleek, React-based Pokémon encyclopedia that utilizes React Router and React Bootstrap. This project allows users to explore detailed Pokémon profiles and search functionalities, all powered by PokeAPIv2.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Pages**: Home, Search, Pokémon Details
+- **Components**: Navbar, HomePage, SearchBar, PokemonList, PokemonCard, PokemonDetails, FavoritesList, FavoriteButton, Loader, AlertMessage
+- **CRUD Operations**: Create, Read, Update, Delete functionalities for Pokémon FavoritesList
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technologies Used
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React
+- React Router
+- React Bootstrap
+- PokeAPI v2
 
-### `npm test`
+## Repository
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[GitHub Repository](https://github.com/ItsAl3xx/Squirtlepedia.git)
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Follow these steps to clone and set up the project on your local machine.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisites
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Make sure you have the following installed:
 
-### `npm run eject`
+- [Node.js](https://nodejs.org/) (includes npm)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Clone the Repository
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Open your terminal (Command Prompt on Windows, Terminal on macOS) and run the following command:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```sh
+git clone https://github.com/ItsAl3xx/Squirtlepedia.git
+cd Squirtlepedia
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Installation
 
-## Learn More
+#### Windows 11
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. **Open Command Prompt**: Press `Win + R`, type `cmd`, and press `Enter`.
+2. **Navigate to the project directory**: Use the `cd` command to navigate to the cloned repository directory.
+3. **Install dependencies**: Run the following command to install the required dependencies:
+   ```sh
+   npm install
+   ```
+4. **Start the development server**: Once the dependencies are installed, start the development server by running:
+   ```sh
+   npm start
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### macOS
 
-### Code Splitting
+1. **Open Terminal**: Press `Cmd + Space` to open Spotlight, type `Terminal`, and press `Enter`.
+2. **Navigate to the project directory**: Use the `cd` command to navigate to the cloned repository directory.
+3. **Install dependencies**: Run the following command to install the required dependencies:
+   ```sh
+   npm install
+   ```
+4. **Start the development server**: Once the dependencies are installed, start the development server by running:
+   ```sh
+   npm start
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Usage
 
-### Analyzing the Bundle Size
+After starting the development server, open your browser and navigate to `http://localhost:3000` to view the application.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Contributing
 
-### Making a Progressive Web App
+If you wish to contribute to this project, please fork the repository and submit a pull request.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+### Contact
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+If you have any questions or feedback, feel free to reach out.
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **Email**: [alexbravo326@gmail.com](mailto:alexbravo326@gmail.com)

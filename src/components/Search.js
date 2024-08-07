@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import PokemonList from './PokemonList'; // Import the PokemonList component to display the list of Pokémon
-import SearchBar from './SearchBar'; // Import the SearchBar component for searching Pokémon
+import PokemonList from './PokemonList';
+import SearchBar from './SearchBar';
+import { Container } from 'react-bootstrap';
 
 const Search = () => {
-  // State to store all pokemons and the displayed pokemons after filtering
   const [allPokemons, setAllPokemons] = useState([]);
   const [displayedPokemons, setDisplayedPokemons] = useState([]);
+  const [noResults, setNoResults] = useState(false);
 
-  // useEffect to fetch all pokemons from the API when component mounts
   useEffect(() => {
     const fetchPokemons = async () => {
       try {
         const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
         const data = await response.json();
-        setAllPokemons(data.results); // Store all pokemons in state
-        setDisplayedPokemons(data.results); // Initially, all pokemons are displayed
+        setAllPokemons(data.results);
+        setDisplayedPokemons(data.results);
       } catch (error) {
         console.error('Error fetching Pokemons:', error);
       }
@@ -22,19 +22,28 @@ const Search = () => {
     fetchPokemons();
   }, []);
 
-  // Function to filter pokemons based on search query
   const onSearch = (query) => {
     const filteredPokemons = allPokemons.filter((pokemon) =>
       pokemon.name.toLowerCase().includes(query.toLowerCase())
     );
-    setDisplayedPokemons(filteredPokemons); // Update displayed pokemons based on search
+    setDisplayedPokemons(filteredPokemons);
+    
+    if (filteredPokemons.length === 0) {
+      setNoResults(true);
+    } else {
+      setNoResults(false);
+    }
   };
 
   return (
-    <div>
-      <SearchBar onSearch={onSearch} /> 
-      <PokemonList pokemons={displayedPokemons} /> 
-    </div>
+    <Container>
+      <SearchBar onSearch={onSearch} />
+      {noResults ? (
+        <p className="text-center mt-4">No Pokémon found. Try a different search.</p>
+      ) : (
+        <PokemonList pokemons={displayedPokemons} />
+      )}
+    </Container>
   );
 };
 

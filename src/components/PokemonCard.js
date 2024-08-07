@@ -2,41 +2,33 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { getTypeColor } from '../helpers'; // Helper function to get color based on Pokémon type
-import styles from './PokemonCard.module.css'; // Custom CSS module for styling
+import { getTypeColor } from '../helpers';
+import styles from './PokemonCard.module.css';
 
-// Define the PokemonCard component accepting a pokemon prop
 const PokemonCard = ({ pokemon }) => {
-  // State to hold detailed information about a specific Pokémon
   const [details, setDetails] = useState(null);
 
-  // Effect hook to fetch Pokémon details when the component mounts or the pokemon prop changes
   useEffect(() => {
     const fetchPokemonDetails = async () => {
       try {
-        // Use axios to fetch data from the provided Pokémon URL
         const response = await axios.get(pokemon.url);
-        setDetails(response.data); // Store the fetched details in state
+        setDetails(response.data);
       } catch (error) {
-        console.error(error); // Log any errors that occur during the fetch
+        console.error('Error fetching Pokemon details:', error);
       }
     };
-    fetchPokemonDetails(); // Call the fetch function
+    fetchPokemonDetails();
   }, [pokemon]);
 
-  // Display loading message if details have not been fetched yet
   if (!details) {
     return <div className={styles.loading}>Loading...</div>;
   }
 
-  // Construct the URL to the Pokémon sprite
   const spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/${details.id}.png`;
 
-  // Render the Pokémon card
   return (
-    // Link to the Pokémon's detailed view page
     <Link to={`/pokemon/${details.name}`} className={styles.pokemonCardLink}>
-      <Card className={styles.pokemonCard}>
+      <Card className={`${styles.pokemonCard} w-100`}>
         <div className={styles.spriteContainer}>
           <div className={styles.spriteBackground}></div>
           <Card.Img variant="top" src={spriteUrl} className={styles.pokemonImg} alt={details.name} />
@@ -48,9 +40,9 @@ const PokemonCard = ({ pokemon }) => {
               <div
                 key={typeInfo.type.name}
                 className={styles.typeBadge}
-                style={{ backgroundColor: getTypeColor(typeInfo.type.name) }} // Set background color based on type
+                style={{ backgroundColor: getTypeColor(typeInfo.type.name) }}
               >
-                {typeInfo.type.name.toUpperCase()} {/* Display the type name in uppercase */}
+                {typeInfo.type.name.toUpperCase()}
               </div>
             ))}
           </div>
@@ -60,4 +52,4 @@ const PokemonCard = ({ pokemon }) => {
   );
 };
 
-export default PokemonCard; // Export the PokemonCard component for use in other parts of the application
+export default PokemonCard;

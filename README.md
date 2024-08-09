@@ -81,4 +81,4 @@ If you wish to contribute to this project, please fork the repository and submit
 
 If you have any questions or feedback, feel free to reach out.
 
-- **Email**: [alexbravo326@gmail.com](mailto:alexbravo326@gmail.com)
+- **Email**: [alexbravo326@gmail.com]

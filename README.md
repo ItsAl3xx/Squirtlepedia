@@ -1,5 +1,5 @@
 
-# SquirtlePedia
+# SquirtlePedia (inspired by Bulbapedia
 
 This project was made for a coding bootcamp for Front End Development that i was taking.
 SquirtlePedia is a sleek, React-based Pokémon encyclopedia that utilizes React Router and React Bootstrap. This project allows users to explore detailed Pokémon profiles and search functionalities, all powered by PokeAPIv2.
